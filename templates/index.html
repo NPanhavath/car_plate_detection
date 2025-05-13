@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Plate Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e3f2fd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            color: #0d47a1;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .upload-form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #2196f3;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .upload-form input[type="submit"] {
+            margin-top: 20px;
+            background: #0d47a1;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .upload-form input[type="submit"]:hover {
+            background: #08306b;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .result img {
+            border-radius: 8px;
+            max-width: 100%;
+            border: 2px solid #2196f3;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><i class="fas fa-car"></i> Car Plate Detector</h1>
+    <h3>Group 1: Project Car Plate Detection</h3>
+
+    <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data">
+            <label for="image" class="custom-file-upload">
+                <i class="fas fa-upload"></i> Choose Image
+            </label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+            <div class="file-name" id="file-name">No file selected</div>
+            <input type="submit" value="Detect Plate">
+        </form>
+    </div>
+
+    {% if image_url %}
+    <div class="result">
+        <h2>Detected Plate: <span style="color: #28a745;">{{ plate }}</span></h2>
+        <img src="{{ url_for('static', filename=image_url) }}" alt="Detected Image">
+    </div>
+    {% endif %}
+
+    <footer>
+        &copy; {{ 2025 }} Car Plate Detection | Group 1 - ITC
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById('image');
+        const fileName = document.getElementById('file-name');
+
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            } else {
+                fileName.textContent = "No file selected";
+            }
+        });
+    </script>
+</body>
+</html>
