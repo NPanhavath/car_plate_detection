@@ -2,7 +2,7 @@
 
 This project is a Flask-based web application that detects car license plates from images using a pre-trained YOLO model and extracts the text using EasyOCR.
 
-![Preview](./static/preview.png) <!-- Optional: add your own image -->
+![Preview](./static/Cars0.png) <!-- Optional: add your own image -->
 
 ---
 
